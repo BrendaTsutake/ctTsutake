@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CT Tsutake</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: #1a1a1a;
+            /* Fundo escuro igual ao site */
+            border: 1px solid #333;
+            color: #fff;
+            margin: 5% auto;
+            padding: 25px;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 15px;
+            position: relative;
+            text-align: center;
+            font-family: sans-serif;
+            animation: fadeIn 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes fadeIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .fechar-modal {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #fff;
+            transition: 0.3s;
+        }
+
+        #modal-img {
+            width: 100%;
+            max-width: 250px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .modal-info h2 {
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .modal-info .preco-destaque {
+            color: #e63946;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .produto-card {
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .produto-card:hover {
+            transform: translateY(-5px);
+        }
+        .fechar-modal:hover { 
+            color: #e62b1e; 
+        }
+        .modal-info h2 { 
+            margin: 10px 0; 
+            color: #fff; 
+        }
+        .modal-info p { 
+            color: #aaa; 
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar-loja">
+            <div class="logo">
+                <img src="/assets/img/loho.jpg" alt="Logo CT Tsutake">
+            </div>
+            <div class="titulo-loja">
+                <h1>Loja Oficial CT Tsutake</h1>
+            </div>
+            <div class="nav-acoes">
+                <a href="index.html" class="btn-voltar">Voltar para o site</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="loja-container">
+            <h2 class="titulo-secao">Roupas e acessórios <span> Oficiais</span></h2>
+
+            <div class="produtos-grid">
+                <div class="produto-card"
+                    onclick="abrirModal('Camiseta Oversized Preta', 'R$ 79,90', 'assets/img/camisapreta.jpg.png')">
+                    <img src="assets/img/camisapreta.jpg.png" alt="Camiseta Oversized Preta">
+                    <h3>Camiseta Oversized Preta</h3>
+                    <p class="preco">R$ 79,90</p>
+                    <button class="btn-comprar">Ver Detalhes</button>
+                </div>
+                <div class="produto-card"
+                    onclick="abrirModal('Camiseta Oversized Cinza', 'R$ 79,90', 'assets/img/camisacinza.jpg.png')">
+                    <img src="assets/img/camisacinza.jpg.png" alt="Camiseta Oversized Cinza">
+                    <h3>Camiseta Oversized Cinza</h3>
+                    <p class="preco">R$ 79,90</p>
+                    <button class="btn-comprar">Ver Detalhes</button>
+                </div>
+                <div class="produto-card"
+                    onclick="abrirModal('Camiseta Oversized Vermelha', 'R$ 79,90', 'assets/img/camisavermelha.jpg.png')">
+                    <img src="assets/img/camisavermelha.jpg.png" alt="Camiseta Oversized Vermelha">
+                    <h3>Camiseta Oversized Vermelha</h3>
+                    <p class="preco">R$ 79,90</p>
+                    <button class="btn-comprar">Ver Detalhes</button>
+                </div>
+                <div class="produto-card"
+                    onclick="abrirModal('Regata Murph 2026', 'R$ 50,00', 'assets/img/murph.jpg.png')">
+                    <div class="tag-desconto">10% OFF</div>
+                    <img src="assets/img/murph.jpg.png" alt="Regata Murph 2026">
+                    <h3>Regata Murph 2026</h3>
+                    <p class="preco">R$ 50,00</p>
+                    <button class="btn-comprar">Ver Detalhes</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ESTRUTURA DO POP-UP -->
+    <div id="modalProduto" class="modal">
+        <div class="modal-content">
+            <span class="fechar-modal" onclick="fecharModal()">&times;</span>
+            <img id="modal-img" src="" alt="Imagem do Produto">
+            <div class="modal-info">
+                <h2 id="modal-titulo"></h2>
+                <p id="modal-preco" class="preco-destaque"></p>
+                <p>Material Premium CT Tsutake. Conforto e estilo para o seu treino.</p>
+                <button class="btn-comprar" style="width: 100%; padding: 15px; margin-top: 10px;">Adicionar ao
+                    Carrinho</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function abrirModal(nome, preco, imagem) {
+            document.getElementById('modal-titulo').innerText = nome;
+            document.getElementById('modal-preco').innerText = preco;
+            document.getElementById('modal-img').src = imagem;
+            document.getElementById('modalProduto').style.display = "block";
+        }
+
+        function fecharModal() {
+            document.getElementById('modalProduto').style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            var modal = document.getElementById('modalProduto');
+            if (event.target == modal) {
+                fecharModal();
+            }
+        }
+    </script>
+
+</body>
+
+</html>
