@@ -582,9 +582,16 @@ footer {
     color: #fff;
 }
 
+body {
+    background-color: #000000; /* Garante que o fundo da página inteira acompanhe o tom cinza */
+    margin: 0;
+}
+
 .loja-container {
     padding: 60px 10%;
-    background-color: #121212;
+    background-color: #000000;
+    width: 100%; /* Adicionado o símbolo de porcentagem */
+    min-height: calc(100vh - 85px); /* Faz o container ocupar toda a altura restante da tela */
 }
 
 .titulo-secao {
