@@ -82,7 +82,7 @@ header {
     width: 100%;
     margin-top: 85px; 
     
-    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(18, 18, 18, 1)), url('/assets/img/inauguracao.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(18, 18, 18, 1)), url('assets/img/inauguracao.jpg');
     background-size: cover;
     background-position: center;
     
