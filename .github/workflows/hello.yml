@@ -13,14 +13,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    
-     - name: Fazer o git clone
-     - uses: actions/checkout@v4
+      - name: Fazer o git clone
+        uses: actions/checkout@v4
 
-     - name: Executando primeiro comando
-       run: echo Hello, world!
+      - name: Executando primeiro comando
+        run: echo "Hello, world!"
       
-     - name: Executando dois ou mais comandos
-       run: |
-          ls -l
-          echo Fim do PROCESSO 
+      - name: Executando dois ou mais comandos
+        run: |
+           ls -l
+           echo Fim do PROCESSO 
