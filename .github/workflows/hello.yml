@@ -54,3 +54,15 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
+        
+  docker:
+        needs: Compilar
+        runs-on: ubuntu-latest
+
+        steps:
+        - name: Docker Login
+          uses: docker/login-action@v4.6.0
+          with:
+           username: ${{secrets.DOCKERHUB_USER}}
+           password: ${{secrets.DOCKERHUB_SENHA}}
+
