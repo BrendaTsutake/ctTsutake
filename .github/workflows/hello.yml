@@ -72,6 +72,6 @@ jobs:
             # Path to the Dockerfile
             file: dockerfile
             push: true
-            tags: brendatsutake/img_ct
+            tags: brendatsutake/img_ct:1.0
 
 
